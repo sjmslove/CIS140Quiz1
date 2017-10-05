@@ -1,0 +1,29 @@
+#!/bin/bash
+
+mkdir -p test/red/magenta
+mkdir -p test/blue/cyan
+echo "script_dir=$(dirname $0)" > test/red/red.bsh 
+echo "echo 'This file is in the folder' $script_dir" >> test/red/red.bsh
+chmod +x test/red/red.bsh
+chmod 711 test/red/red.bsh
+echo "find test -name '*.bsh' >> test/scripts.txt" >> test/red/red.bsh
+cp test/red/red.bsh  test/blue/blue.bsh
+cp test/red/red.bsh  test/blue/cyan/cyan.bsh
+cp test/red/red.bsh  test/red/magenta/magenta.bsh
+mkdir test/red/next
+mkdir test/red/magenta/next
+mkdir test/blue/next
+mkdir test/blue/cyan/next
+cp test/red/red.bsh > test/red/next/rednext.bsh
+cp test/red/red.bsh > test/red/magenta/next/magentanext.bsh
+cp test/red/red.bsh > test/blue/next/bluenext.bsh
+cp test/red/red.bsh > test/blue/cyan/next/cyannext.bsh
+echo 'ls -alR >> test/contents' >test/list.bsh
+chmod +x test/list.bsh
+chmod 711 test/list.bsh
+grep -rn "folder" test > test/foundText
+rm -r test/blue test/red
+
+
+
+
